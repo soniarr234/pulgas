@@ -1,0 +1,38 @@
+:root {
+  --color-orange: #d97706;
+  --color-orange-light: #f59e0b;
+
+  --color-purple: #6366f1;
+  --color-cyan: #06b6d4;
+
+  --color-bg: #050505;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+
+  background: radial-gradient(
+      600px circle at top left,
+      rgba(217, 119, 6, 0.03),
+      transparent
+    ),
+    radial-gradient(
+      600px circle at top right,
+      rgba(99, 102, 241, 0.03),
+      transparent
+    ),
+    #050505;
+
+  color: white;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,46 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1 class="login-title">LA PULGA BENITO</h1>
+
+    <div class="login-logo">
+      <img
+        src="https://res.cloudinary.com/dkicsjbbb/image/upload/v1788770148/1000078738_wjoqdb.png"
+        alt="Logo Peña"
+      />
+    </div>
+
+    <div class="login-input-container">
+      <input
+        class="login-input"
+        [type]="mostrarPassword ? 'text' : 'password'"
+        placeholder="Contraseña"
+        [(ngModel)]="password"
+        (keyup.enter)="entrar()"
+      />
+
+      <button
+        type="button"
+        class="login-password-toggle"
+        (click)="mostrarPassword = !mostrarPassword"
+      >
+        <img
+          class="login-password-icon"
+          [src]="mostrarPassword
+        ? 'https://res.cloudinary.com/dkicsjbbb/image/upload/v1788773452/1000078758_fmm9tb.png'
+        : 'https://res.cloudinary.com/dkicsjbbb/image/upload/v1788773450/1000078755_a0eiip.png'"
+          alt="Mostrar contraseña"
+        />
+      </button>
+    </div>
+
+    <button class="login-button" (click)="entrar()">ENTRAR</button>
+
+    <p class="login-subtitle">Acceso exclusivo para miembros</p>
+
+    @if(error){
+
+    <div class="login-error">{{ error }}</div>
+
+    }
+  </div>
+</div>

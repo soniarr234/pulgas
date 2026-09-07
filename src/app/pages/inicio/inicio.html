@@ -1,0 +1,58 @@
+<div class="inicio-page">
+  <div class="inicio-card">
+    <div class="inicio-card-header">
+      <span>Próxima programación</span>
+    </div>
+
+    <div class="inicio-programa-dia">{{ proximoDia.titulo }}</div>
+
+    @for (evento of proximoDia.eventos; track evento.nombre) {
+
+    <div class="inicio-programa-evento">
+      <span class="inicio-programa-hora"> {{ evento.hora }} </span>
+
+      <span class="inicio-programa-nombre"> {{ evento.nombre }} </span>
+    </div>
+
+    }
+  </div>
+
+  <div class="inicio-card">
+    <div class="inicio-card-header">
+      <span>Cuenta atrás</span>
+    </div>
+
+    <div class="inicio-big-number">{{ cuentaAtras }}</div>
+
+    <div class="inicio-small-text">{{ mensajeCuentaAtras }}</div>
+  </div>
+
+  <div class="inicio-card">
+    <div class="inicio-card-header">
+      <span>✅</span>
+      <span>Pendientes</span>
+    </div>
+
+    <div class="inicio-stat">5 tareas pendientes</div>
+  </div>
+
+  <div class="inicio-card">
+    <div class="inicio-card-header">
+      <span>🍻</span>
+      <span>Compras último año</span>
+    </div>
+
+    <div class="inicio-stat">27 productos registrados</div>
+  </div>
+
+  <div class="inicio-card">
+    <div class="inicio-card-header">
+      <span>👀</span>
+      <span>Cotilleos</span>
+    </div>
+
+    <div class="inicio-stat">3 cotilleos nuevos</div>
+  </div>
+</div>
+
+<app-navbar></app-navbar>

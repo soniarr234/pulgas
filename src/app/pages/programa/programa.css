@@ -1,0 +1,275 @@
+.programa-page {
+  padding: 20px;
+  padding-bottom: 90px;
+}
+
+/* HEADER */
+
+.programa-header {
+  margin-bottom: 24px;
+}
+
+.programa-badge {
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  margin-bottom: 12px;
+
+  border-radius: 20px;
+
+  background: rgba(217, 119, 6, 0.15);
+
+  color: var(--color-orange);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+.programa-title {
+  font-size: 30px;
+  font-weight: 800;
+
+  color: white;
+}
+
+.programa-month {
+  color: var(--color-orange);
+
+  font-size: 14px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 3px;
+
+  text-align: center;
+
+  margin: 15px 0 20px 0;
+}
+
+/* CALENDARIO */
+
+.programa-calendar {
+  display: grid;
+
+  grid-template-columns: repeat(7, 1fr);
+
+  gap: 10px;
+}
+
+.programa-weekday {
+  text-align: center;
+
+  font-weight: 700;
+
+  color: #888;
+
+  padding-bottom: 10px;
+}
+
+.programa-empty {
+  height: 55px;
+}
+
+.programa-day {
+  height: 55px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+
+  font-weight: 700;
+
+  transition: 0.2s;
+}
+
+.programa-day.disabled {
+  background: #161616;
+
+  color: #666;
+
+  opacity: 0.55;
+
+  text-decoration: line-through;
+}
+
+.programa-day.active {
+  background: #1c1c1c;
+
+  color: white;
+
+  border: 1px solid rgba(217, 119, 6, 0.5);
+
+  cursor: pointer;
+}
+
+.programa-day.active:hover {
+  background: #252525;
+
+  border-color: var(--color-orange);
+}
+
+/* MODAL */
+
+.programa-modal-backdrop {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  z-index: 9999;
+
+  animation: backdropFade 0.25s ease;
+}
+
+.programa-modal {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 20px;
+
+  border-radius: 20px;
+
+  background: #101010;
+
+  border: 1px solid #2b2b2b;
+
+  animation: modalOpen 0.25s ease;
+}
+
+@keyframes backdropFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalOpen {
+  from {
+    opacity: 0;
+
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+}
+
+.programa-modal-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.programa-modal-header h2 {
+  color: white;
+
+  font-size: 22px;
+}
+
+.programa-close {
+  border: none;
+
+  background: none;
+
+  color: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+.programa-separador {
+  height: 1px;
+
+  margin: 18px 0;
+
+  background: #252525;
+}
+
+.programa-info-card {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 12px;
+
+  margin-bottom: 10px;
+
+  border-radius: 12px;
+
+  background: #181818;
+
+  color: white;
+}
+
+.programa-eventos-title {
+  margin-bottom: 14px;
+
+  color: #9a9a9a;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+.programa-evento {
+  display: flex;
+
+  gap: 12px;
+
+  padding: 14px;
+
+  margin-bottom: 10px;
+
+  border-radius: 14px;
+
+  background: #181818;
+
+  border-left: 3px solid var(--color-orange);
+}
+
+.programa-evento-content {
+  flex: 1;
+}
+
+.programa-evento-hora {
+  color: var(--color-orange);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  margin-bottom: 4px;
+}
+
+.programa-evento-nombre {
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 600;
+}
