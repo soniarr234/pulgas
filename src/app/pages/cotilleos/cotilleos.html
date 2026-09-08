@@ -1,25 +1,34 @@
+<!-- pages/cotilleos/cotilleos.html -->
 <div class="cotilleos-page">
 
-  <h1 class="cotilleos-title">
-    👀 Cotilleos
-  </h1>
+  <h1 class="cotilleos-title">👀 Cotilleos</h1>
 
-  @for (cotilleo of cotilleos; track cotilleo.id) {
-
-    <div class="cotilleo-card">
-
-      <div class="cotilleo-texto">
-        {{ cotilleo.texto }}
+  @if (cargando) {
+    <p style="color: white;">Cargando cotilleos...</p>
+  } @else {
+    
+    @for (cotilleo of cotilleos; track cotilleo.id) {
+      <div class="cotilleo-card">
+        <div class="cotilleo-usuario">
+          🍻 {{ cotilleo.usuario }}
+        </div>
+        <div class="cotilleo-texto">
+          {{ cotilleo.texto }}
+        </div>
+        <div class="cotilleo-fecha">
+          {{ cotilleo.fecha | date:'dd/MM/yyyy HH:mm' }}
+        </div>
       </div>
-
-      <div class="cotilleo-fecha">
-        {{ cotilleo.fecha }}
-      </div>
-
-    </div>
+    } @empty {
+      <p style="color: white;">No hay cotilleos disponibles todavía.</p>
+    }
 
   }
 
+</div>
+
+<div style="color:white; padding: 10px;">
+  Total cotilleos: {{ cotilleos.length }}
 </div>
 
 <app-navbar></app-navbar>

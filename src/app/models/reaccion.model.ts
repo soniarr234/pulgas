@@ -1,3 +1,4 @@
+// models/reaccion.model.ts
 export interface Reaccion {
 
     id: number;

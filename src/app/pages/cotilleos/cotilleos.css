@@ -68,3 +68,34 @@
   
     line-height: 1.5;
   }
+
+  .cotilleo-fecha {
+
+    margin-top: 10px;
+  
+    color: #888;
+  
+    font-size: 13px;
+  
+  }
+
+
+  .skeleton {
+    background: #222 !important;
+    opacity: 0.6;
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  .skeleton-text {
+    background: #444;
+    height: 16px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  .skeleton-text.short { width: 40%; }
+  .skeleton-text.long { width: 80%; }
+  
+  @keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.4; }
+  }

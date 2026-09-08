@@ -1,3 +1,4 @@
+// services/supabase.service.ts
 import { Injectable } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
 
@@ -7,8 +8,8 @@ import { createClient } from '@supabase/supabase-js';
 export class SupabaseService {
 
   supabase = createClient(
-    'https://lxcplmrvcdutkrupyohi.supabase.com',
-    'sb_publishable__Z7kOVsN6eh_fOW7tuM97Q_lamsOr6d'
+    'https://prriqjvcbzqdmlleksvm.supabase.co',
+    'sb_publishable_ZzmdEJEXI47m2Jm61HuWXQ_uW7zS15K'
   );
 
 }

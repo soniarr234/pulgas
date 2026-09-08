@@ -1,3 +1,4 @@
+// models/comentario.model.ts
 export interface Comentario {
 
     id: number;
@@ -5,9 +6,9 @@ export interface Comentario {
     cotilleo_id: number;
   
     comentario: string;
+
+    usuario: string;
   
     fecha: string;
-  
-    usuario: string;
   
   }

@@ -1,6 +1,9 @@
+// models/cotilleo.model.ts
 export interface Cotilleo {
 
   id: number;
+
+  edicion: number;
 
   texto: string;
 
@@ -8,6 +11,6 @@ export interface Cotilleo {
 
   fecha: string;
 
-  edicion: number;
+  
 
 }
