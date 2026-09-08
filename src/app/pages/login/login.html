@@ -26,8 +26,8 @@
         <img
           class="login-password-icon"
           [src]="mostrarPassword
-        ? 'https://res.cloudinary.com/dkicsjbbb/image/upload/v1788773452/1000078758_fmm9tb.png'
-        : 'https://res.cloudinary.com/dkicsjbbb/image/upload/v1788773450/1000078755_a0eiip.png'"
+            ? 'https://res.cloudinary.com/dkicsjbbb/image/upload/v1788773452/1000078758_fmm9tb.png'
+            : 'https://res.cloudinary.com/dkicsjbbb/image/upload/v1788773450/1000078755_a0eiip.png'"
           alt="Mostrar contraseña"
         />
       </button>
@@ -37,9 +37,31 @@
 
     <p class="login-subtitle">Acceso exclusivo para miembros</p>
 
-    @if(error){
+    @if (error) {
 
     <div class="login-error">{{ error }}</div>
+
+    } @if (installService.puedeInstalar) {
+
+    <button class="install-link" (click)="installService.instalar()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="1.3em"
+        height="1.3em"
+      >
+        <path
+          fill="currentColor"
+          d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z"
+        />
+      </svg>
+
+      Instalar aplicación
+    </button>
+
+    } @if (installService.esIOS) {
+
+    <button class="install-link">📱 Añadir a pantalla de inicio</button>
 
     }
   </div>

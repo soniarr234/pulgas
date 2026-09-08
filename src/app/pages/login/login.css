@@ -178,3 +178,24 @@
 
   font-weight: 600;
 }
+
+.install-link {
+  margin-top: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: 100%;
+
+  background: none;
+  border: none;
+
+  color: var(--color-orange);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
