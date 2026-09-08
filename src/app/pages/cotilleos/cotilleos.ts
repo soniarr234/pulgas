@@ -1,21 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
-import { Cotilleo } from '../../models/cotilleo.model';
+import { Navbar } from '../../components/navbar/navbar';
 import { CotilleoService } from '../../services/cotilleo.service';
 
 @Component({
   selector: 'app-cotilleos',
   standalone: true,
-  imports: [FormsModule],
+  imports: [Navbar],
   templateUrl: './cotilleos.html',
-  styleUrl: './cotilleos.css',
+  styleUrls: ['./cotilleos.css'],
 })
 export class Cotilleos implements OnInit {
 
-  cotilleos: Cotilleo[] = [];
-
-  nuevoCotilleo = '';
+  cotilleos: any[] = [];
 
   constructor(
     private cotilleoService: CotilleoService
@@ -23,45 +19,19 @@ export class Cotilleos implements OnInit {
 
   async ngOnInit() {
 
-    await this.cargarCotilleos();
-
-  }
-
-  async cargarCotilleos() {
-
-    const { data, error } =
-      await this.cotilleoService.obtenerCotilleos();
-
-    if (error) {
+    try {
+  
+      this.cotilleos =
+        await this.cotilleoService.getCotilleos();
+  
+      console.log(this.cotilleos);
+  
+    } catch (error) {
+  
       console.error(error);
-      return;
+  
     }
-
-    this.cotilleos = data ?? [];
-
-  }
-
-  async publicar() {
-
-    if (!this.nuevoCotilleo.trim()) {
-      return;
-    }
-
-    const { error } =
-      await this.cotilleoService.crearCotilleo(
-        this.nuevoCotilleo,
-        'Anónimo'
-      );
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    this.nuevoCotilleo = '';
-
-    await this.cargarCotilleos();
-
+  
   }
 
 }

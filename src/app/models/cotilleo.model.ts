@@ -1,13 +1,13 @@
 export interface Cotilleo {
 
-    id: number;
-  
-    texto: string;
-  
-    fecha: string;
-  
-    usuario: string;
-  
-    edicion: number;
-  
-  }
+  id: number;
+
+  texto: string;
+
+  usuario: string;
+
+  fecha: string;
+
+  edicion: number;
+
+}
