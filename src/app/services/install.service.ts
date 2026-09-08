@@ -7,7 +7,7 @@ export class InstallService {
 
   deferredPrompt: any = null;
 
-  puedeInstalar = false;
+  puedeInstalar = true;
 
   esIOS = false;
 
@@ -49,18 +49,30 @@ export class InstallService {
 
   async instalar(): Promise<void> {
 
-    if (!this.deferredPrompt) {
+    if (this.deferredPrompt) {
+  
+      this.deferredPrompt.prompt();
+  
+      await this.deferredPrompt.userChoice;
+  
       return;
+  
     }
-
-    this.deferredPrompt.prompt();
-
-    await this.deferredPrompt.userChoice;
-
-    this.deferredPrompt = null;
-
-    this.puedeInstalar = false;
-
+  
+    if (this.esIOS) {
+  
+      alert(
+        'Safari → Compartir → Añadir a pantalla de inicio'
+      );
+  
+      return;
+  
+    }
+  
+    alert(
+      'Abre el menú del navegador y pulsa "Instalar aplicación" o "Añadir a pantalla de inicio".'
+    );
+  
   }
 
 }
