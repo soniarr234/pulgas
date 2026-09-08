@@ -1,34 +1,124 @@
 <!-- pages/cotilleos/cotilleos.html -->
+
 <div class="cotilleos-page">
 
-  <h1 class="cotilleos-title">👀 Cotilleos</h1>
+  <h1 class="cotilleos-title">
+    👀 Cotilleos
+  </h1>
 
-  @if (cargando) {
-    <p style="color: white;">Cargando cotilleos...</p>
-  } @else {
-    
-    @for (cotilleo of cotilleos; track cotilleo.id) {
-      <div class="cotilleo-card">
-        <div class="cotilleo-usuario">
-          🍻 {{ cotilleo.usuario }}
-        </div>
-        <div class="cotilleo-texto">
-          {{ cotilleo.texto }}
-        </div>
-        <div class="cotilleo-fecha">
-          {{ cotilleo.fecha | date:'dd/MM/yyyy HH:mm' }}
-        </div>
+  <div
+    class="cotilleo-card"
+    *ngFor="let cotilleo of cotilleos">
+
+    <div class="cotilleo-header">
+
+      <div class="cotilleo-usuario">
+        🍻 {{ cotilleo.usuario }}
       </div>
-    } @empty {
-      <p style="color: white;">No hay cotilleos disponibles todavía.</p>
-    }
 
-  }
+      <div class="cotilleo-fecha">
+        {{ cotilleo.fecha | date:'dd/MM HH:mm' }}
+      </div>
+
+    </div>
+
+    <div class="cotilleo-texto">
+      {{ cotilleo.texto }}
+    </div>
+
+    <div class="cotilleo-reacciones">
+
+      <button
+        class="reaccion-btn"
+        (click)="reaccionar(cotilleo, 'corazon')">
+
+        ❤️ {{ contarReacciones(cotilleo, 'corazon') }}
+
+      </button>
+
+      <button
+        class="reaccion-btn"
+        (click)="reaccionar(cotilleo, 'risa')">
+
+        😂 {{ contarReacciones(cotilleo, 'risa') }}
+
+      </button>
+
+      <button
+        class="reaccion-btn"
+        (click)="reaccionar(cotilleo, 'fuego')">
+
+        🔥 {{ contarReacciones(cotilleo, 'fuego') }}
+
+      </button>
+
+      <button
+        class="reaccion-btn"
+        (click)="abrirComentarios(cotilleo)">
+
+        💬 {{ contarComentarios(cotilleo) }}
+
+      </button>
+
+    </div>
+
+  </div>
 
 </div>
 
-<div style="color:white; padding: 10px;">
-  Total cotilleos: {{ cotilleos.length }}
-</div>
+@if (mostrarComentarios) {
+
+  <div
+    class="modal-backdrop"
+    (click)="cerrarComentarios()">
+
+    <div
+      class="modal"
+      (click)="$event.stopPropagation()">
+
+      <h3>
+        💬 Comentarios
+      </h3>
+
+      <div
+        class="comentario"
+        *ngFor="
+          let comentario of
+          cotilleoSeleccionado.cotilleo_comentarios
+        ">
+
+        <div class="comentario-usuario">
+          {{ comentario.usuario }}
+        </div>
+
+        <div class="comentario-texto">
+          {{ comentario.comentario }}
+        </div>
+
+        <div class="comentario-fecha">
+          {{ comentario.fecha | date:'dd/MM HH:mm' }}
+        </div>
+
+      </div>
+
+      <textarea
+        class="comentario-input"
+        [(ngModel)]="nuevoComentario"
+        placeholder="Escribe un comentario...">
+      </textarea>
+
+      <button
+        class="comentario-btn"
+        (click)="publicarComentario()">
+
+        Enviar comentario
+
+      </button>
+
+    </div>
+
+  </div>
+
+}
 
 <app-navbar></app-navbar>

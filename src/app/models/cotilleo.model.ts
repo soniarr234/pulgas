@@ -3,14 +3,12 @@ export interface Cotilleo {
 
   id: number;
 
-  edicion: number;
-
   texto: string;
 
   usuario: string;
 
   fecha: string;
 
-  
+  anio: number;
 
 }

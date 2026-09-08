@@ -1,42 +1,161 @@
 // pages/cotilleos/cotilleos.ts
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Asegúrate de tener esta importación
+import {
+  Component,
+  OnInit,
+  ChangeDetectorRef
+} from '@angular/core';
+
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { Navbar } from '../../components/navbar/navbar';
 import { CotilleoService } from '../../services/cotilleo.service';
-import { Cotilleo } from '../../models/cotilleo.model';
 
 @Component({
   selector: 'app-cotilleos',
   standalone: true,
-  imports: [Navbar, CommonModule], // Asegúrate de que CommonModule esté aquí
+  imports: [
+    CommonModule,
+    FormsModule,
+    Navbar
+  ],
   templateUrl: './cotilleos.html',
   styleUrls: ['./cotilleos.css'],
 })
 export class Cotilleos implements OnInit {
 
-  cotilleos: Cotilleo[] = [];
-  cargando = true;
+  cotilleos: any[] = [];
 
-  constructor(private cotilleoService: CotilleoService) {}
+  nuevoCotilleo = '';
 
-  // pages/cotilleos/cotilleos.ts
-async ngOnInit() {
-  this.cargando = true; // Forzamos el estado inicial de carga
+  mostrarComentarios = false;
 
-  try {
-    const datos = await this.cotilleoService.getCotilleos();
-    // Validamos que los datos existan antes de asignarlos
-    this.cotilleos = datos ? datos : []; 
-    console.log('TOTAL ASIGNADO:', this.cotilleos.length);
-  } catch (error) {
-    console.error('ERROR COTILLEOS', error);
-  } finally {
-    // Usamos un micro-timeout para asegurarnos de que Angular 
-    // ejecute la actualización fuera del hilo bloqueado por Chrome
-    setTimeout(() => {
-      this.cargando = false;
-    }, 0);
+  cotilleoSeleccionado: any = null;
+
+  nuevoComentario = '';
+
+  constructor(
+    private cotilleoService: CotilleoService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  async ngOnInit() {
+
+    await this.cargarCotilleos();
+
   }
-}
+
+  async cargarCotilleos() {
+
+    this.cotilleos =
+      await this.cotilleoService.getCotilleos();
+
+    console.log(
+      'TOTAL',
+      this.cotilleos.length
+    );
+
+    this.cdr.detectChanges();
+
+  }
+
+  async publicar() {
+
+    if (!this.nuevoCotilleo.trim()) {
+      return;
+    }
+
+    await this.cotilleoService.crearCotilleo(
+      this.nuevoCotilleo,
+      'Sonia'
+    );
+
+    this.nuevoCotilleo = '';
+
+    await this.cargarCotilleos();
+
+  }
+
+  contarReacciones(
+    cotilleo: any,
+    tipo: string
+  ): number {
+  
+    return (
+      cotilleo.cotilleo_reacciones
+        ?.filter(
+          (r: any) =>
+            r.tipo === tipo
+        )
+        .length ?? 0
+    );
+  
+  }
+
+  async reaccionar(
+    cotilleo: any,
+    tipo: string
+  ) {
+  
+    await this.cotilleoService.reaccionar(
+      cotilleo.id,
+      tipo,
+      'Sonia'
+    );
+  
+    await this.cargarCotilleos();
+  
+  }
+
+  contarComentarios(
+    cotilleo: any
+  ): number {
+  
+    return (
+      cotilleo.cotilleo_comentarios
+        ?.length ?? 0
+    );
+  
+  }
+
+  abrirComentarios(
+    cotilleo: any
+  ) {
+  
+    this.cotilleoSeleccionado =
+      cotilleo;
+  
+    this.mostrarComentarios = true;
+  
+  }
+
+  cerrarComentarios() {
+
+    this.mostrarComentarios = false;
+  
+  }
+
+  async publicarComentario() {
+
+    if (!this.nuevoComentario.trim()) {
+      return;
+    }
+  
+    await this.cotilleoService.crearComentario(
+      this.cotilleoSeleccionado.id,
+      this.nuevoComentario,
+      'Sonia'
+    );
+  
+    this.nuevoComentario = '';
+  
+    await this.cargarCotilleos();
+  
+    this.cotilleoSeleccionado =
+      this.cotilleos.find(
+        c => c.id === this.cotilleoSeleccionado.id
+      );
+  
+  }
 
 }

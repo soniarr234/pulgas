@@ -1,101 +1,223 @@
 .cotilleos-page {
-    padding: 20px;
-  }
-  
-  .cotilleos-page h1 {
-    color: white;
-    margin-bottom: 20px;
-  }
-  
-  .cotilleo-crear {
-    margin-bottom: 20px;
-  }
-  
-  .cotilleo-crear textarea {
-    width: 100%;
-    min-height: 120px;
-  
-    border: none;
-    border-radius: 14px;
-  
-    padding: 14px;
-  
-    background: #181818;
-  
-    color: white;
-  }
-  
-  .cotilleo-crear button {
-    width: 100%;
-  
-    margin-top: 10px;
-  
-    height: 46px;
-  
-    border: none;
-  
-    border-radius: 12px;
-  
-    background: var(--color-orange);
-  
-    color: white;
-  
-    font-weight: 700;
-  }
-  
-  .cotilleo-card {
-    margin-bottom: 14px;
-  
-    padding: 16px;
-  
-    border-radius: 16px;
-  
-    background: #141414;
-  
-    border: 1px solid #252525;
-  }
-  
-  .cotilleo-usuario {
-    color: var(--color-orange);
-  
-    font-weight: 700;
-  
-    margin-bottom: 10px;
-  }
-  
-  .cotilleo-texto {
-    color: white;
-  
-    line-height: 1.5;
-  }
+  padding: 20px;
+  padding-bottom: 90px;
+}
 
-  .cotilleo-fecha {
+.cotilleos-title {
+  color: white;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
 
-    margin-top: 10px;
-  
-    color: #888;
-  
-    font-size: 13px;
-  
-  }
+/* FORMULARIO */
 
+.cotilleos-form {
+  margin-bottom: 20px;
+}
 
-  .skeleton {
-    background: #222 !important;
-    opacity: 0.6;
-    animation: pulse 1.5s infinite ease-in-out;
-  }
-  .skeleton-text {
-    background: #444;
-    height: 16px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-  }
-  .skeleton-text.short { width: 40%; }
-  .skeleton-text.long { width: 80%; }
-  
-  @keyframes pulse {
-    0% { opacity: 0.4; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.4; }
-  }
+.cotilleos-form textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+
+  background: #181818;
+  color: white;
+
+  resize: none;
+}
+
+.cotilleos-form button {
+  width: 100%;
+  height: 44px;
+  margin-top: 12px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: var(--color-orange);
+
+  color: white;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+/* TARJETA */
+
+.cotilleo-card {
+  margin-bottom: 16px;
+  padding: 16px;
+
+  border-radius: 16px;
+
+  background: #101010;
+
+  border: 1px solid #252525;
+}
+
+.cotilleo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 12px;
+}
+
+.cotilleo-usuario {
+  color: var(--color-orange);
+  font-weight: 700;
+}
+
+.cotilleo-fecha {
+  color: #888;
+  font-size: 12px;
+}
+
+.cotilleo-texto {
+  color: white;
+  line-height: 1.5;
+}
+
+/* REACCIONES */
+
+.cotilleo-reacciones {
+  display: flex;
+  gap: 10px;
+
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.reaccion-btn {
+  padding: 8px 12px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: #1a1a1a;
+
+  color: white;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.reaccion-btn:hover {
+  background: #252525;
+}
+
+/* MODAL */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+}
+
+.modal {
+  width: 90%;
+  max-width: 500px;
+
+  max-height: 80vh;
+  overflow-y: auto;
+
+  padding: 20px;
+
+  border-radius: 20px;
+
+  background: #101010;
+  border: 1px solid #252525;
+}
+
+.modal h3 {
+  margin-bottom: 16px;
+
+  color: white;
+}
+
+/* COMENTARIOS */
+
+.comentario {
+  margin-bottom: 12px;
+  padding: 12px;
+
+  border-radius: 12px;
+
+  background: #181818;
+}
+
+.comentario-usuario {
+  color: var(--color-orange);
+
+  font-weight: 700;
+
+  margin-bottom: 6px;
+}
+
+.comentario-texto {
+  color: white;
+  line-height: 1.4;
+}
+
+.comentario-fecha {
+  margin-top: 8px;
+
+  color: #888;
+  font-size: 12px;
+}
+
+/* NUEVO COMENTARIO */
+
+.comentario-input {
+  width: 100%;
+  min-height: 90px;
+
+  margin-top: 12px;
+  padding: 12px;
+
+  border: 1px solid #2d2d2d;
+  border-radius: 12px;
+
+  background: #181818;
+  color: white;
+
+  resize: none;
+}
+
+.comentario-input:focus {
+  outline: none;
+  border-color: var(--color-orange);
+}
+
+.comentario-btn {
+  width: 100%;
+  height: 44px;
+
+  margin-top: 12px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: var(--color-orange);
+
+  color: white;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.comentario-btn:hover {
+  filter: brightness(1.05);
+}

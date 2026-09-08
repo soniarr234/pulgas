@@ -1,14 +1,14 @@
 // models/comentario.model.ts
 export interface Comentario {
 
-    id: number;
-  
-    cotilleo_id: number;
-  
-    comentario: string;
+  id: number;
 
-    usuario: string;
-  
-    fecha: string;
-  
-  }
+  cotilleo_id: number;
+
+  comentario: string;
+
+  usuario: string;
+
+  fecha: string;
+
+}
