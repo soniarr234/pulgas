@@ -1,0 +1,42 @@
+<div class="cotilleos-page">
+
+    <h1>
+      👀 Cotilleos
+    </h1>
+  
+    <div class="cotilleo-crear">
+  
+      <textarea
+        [(ngModel)]="nuevoCotilleo"
+        placeholder="Cuenta algo..."
+      ></textarea>
+  
+      <button
+        (click)="publicar()">
+  
+        Publicar
+  
+      </button>
+  
+    </div>
+  
+    @for (
+      cotilleo of cotilleos;
+      track cotilleo.id
+    ) {
+  
+      <div class="cotilleo-card">
+  
+        <div class="cotilleo-usuario">
+          🤫 {{ cotilleo.usuario }}
+        </div>
+  
+        <div class="cotilleo-texto">
+          {{ cotilleo.texto }}
+        </div>
+  
+      </div>
+  
+    }
+  
+  </div>

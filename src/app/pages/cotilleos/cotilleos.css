@@ -1,0 +1,70 @@
+.cotilleos-page {
+    padding: 20px;
+  }
+  
+  .cotilleos-page h1 {
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .cotilleo-crear {
+    margin-bottom: 20px;
+  }
+  
+  .cotilleo-crear textarea {
+    width: 100%;
+    min-height: 120px;
+  
+    border: none;
+    border-radius: 14px;
+  
+    padding: 14px;
+  
+    background: #181818;
+  
+    color: white;
+  }
+  
+  .cotilleo-crear button {
+    width: 100%;
+  
+    margin-top: 10px;
+  
+    height: 46px;
+  
+    border: none;
+  
+    border-radius: 12px;
+  
+    background: var(--color-orange);
+  
+    color: white;
+  
+    font-weight: 700;
+  }
+  
+  .cotilleo-card {
+    margin-bottom: 14px;
+  
+    padding: 16px;
+  
+    border-radius: 16px;
+  
+    background: #141414;
+  
+    border: 1px solid #252525;
+  }
+  
+  .cotilleo-usuario {
+    color: var(--color-orange);
+  
+    font-weight: 700;
+  
+    margin-bottom: 10px;
+  }
+  
+  .cotilleo-texto {
+    color: white;
+  
+    line-height: 1.5;
+  }
