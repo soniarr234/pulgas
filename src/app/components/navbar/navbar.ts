@@ -10,9 +10,13 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./navbar.css'],
 })
 export class Navbar {
-  constructor(private router: Router) {}
+
+  constructor(
+    public router: Router
+  ) {}
 
   irA(ruta: string): void {
     this.router.navigate([ruta]);
   }
+
 }

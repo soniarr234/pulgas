@@ -1,26 +1,36 @@
 <nav class="navbar">
-  <button class="navbar-item" (click)="irA('/inicio')">
-    <span class="navbar-icon">🏠</span>
+  <button class="navbar-item" [class.navbar-item-active]="router.url === '/inicio'" (click)="irA('/inicio')">
+    <span class="navbar-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.1em" height="1.1em"><g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path strokeDasharray="18" d="M4.5 21.5h15"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="18;0"/></path><path strokeDasharray="16" strokeDashoffset="16" d="M4.5 21.5v-13.5M19.5 21.5v-13.5"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.3s" dur="0.3s" to="0"/></path><path strokeDasharray="28" strokeDashoffset="28" d="M2 10l10 -8l10 8"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.4s" to="0"/></path><path strokeDasharray="26" strokeDashoffset="26" d="M9.5 21.5v-9h5v9"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.9s" dur="0.6s" to="0"/></path></g></svg></span>
     <span class="navbar-label">Inicio</span>
   </button>
 
-  <button class="navbar-item">
-    <span class="navbar-icon">💰</span>
+  <button class="navbar-item" [class.navbar-item-active]="router.url === '/compras'">
+    <span class="navbar-icon"><svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      width="1.2em"
+      height="1.2em"
+    >
+      <path
+        fill="currentColor"
+        d="M16.954 9.545q.046.358.046.763c0 1.535-.465 2.567-.91 3.208a4 4 0 0 1-.61.695a3 3 0 0 1-.236.188l-.009.006a.5.5 0 0 0-.235.424V16.5a.5.5 0 0 1-.5.5h-1.384a.116.116 0 0 1-.116-.116c0-.617-.5-1.117-1.116-1.117h-1.768c-.616 0-1.116.5-1.116 1.117a.116.116 0 0 1-.116.116H7.5a.5.5 0 0 1-.5-.5v-.85a.5.5 0 0 0-.342-.473l-.04-.019a2 2 0 0 1-.23-.132c-.22-.142-.567-.406-1.032-.877a5 5 0 0 1-.997-1.488c-.184-.422-.569-.793-1.084-.88A.33.33 0 0 1 3 11.457V9.95a.29.29 0 0 1 .242-.286c.55-.093.94-.514 1.092-.978c.13-.398.364-.92.752-1.313a5.6 5.6 0 0 1 1.09-.848a6 6 0 0 1 .49-.263l.026-.012l.005-.002A.5.5 0 0 0 7 5.787V3.69c.253.22.548.458.866.67c.434.292.951.566 1.482.665q.184-.501.48-.948l-.183-.019c-.355-.036-.782-.233-1.223-.528a8.5 8.5 0 0 1-1.115-.916a.77.77 0 0 0-.826-.155a.76.76 0 0 0-.481.704v2.314A6.9 6.9 0 0 0 4.374 6.67c-.543.55-.838 1.24-.99 1.705c-.06.178-.19.283-.308.303A1.29 1.29 0 0 0 2 9.949v1.507a1.33 1.33 0 0 0 1.108 1.312c.125.02.26.122.334.293a6 6 0 0 0 1.202 1.79c.509.516.911.827 1.199 1.014q.086.055.157.097v.538A1.5 1.5 0 0 0 7.5 18h1.384C9.5 18 10 17.5 10 16.884c0-.065.052-.117.116-.117h1.768c.064 0 .116.052.116.117C12 17.5 12.5 18 13.116 18H14.5a1.5 1.5 0 0 0 1.5-1.5v-1.419a5 5 0 0 0 .91-.994c.555-.797 1.09-2.026 1.09-3.779c0-.726-.101-1.376-.293-1.957a4.5 4.5 0 0 1-.754 1.194m-.152-4.313a3.5 3.5 0 0 1-1.171 4.166c-.43.312-.997.29-1.487.087l-3.04-1.259c-.49-.203-.907-.588-.99-1.112a3.5 3.5 0 0 1 6.688-1.882m-1.76 3.358a2.5 2.5 0 1 0-3.94-1.632a.3.3 0 0 0 .083.148c.064.068.166.14.302.196l3.04 1.26a.9.9 0 0 0 .352.073a.3.3 0 0 0 .164-.045M6.75 9.5a.75.75 0 1 0 0-1.5a.75.75 0 0 0 0 1.5"
+      />
+    </svg></span>
     <span class="navbar-label">Compras</span>
   </button>
 
-  <button class="navbar-item" (click)="irA('/programa')">
-    <span class="navbar-icon">📅</span>
+  <button class="navbar-item" [class.navbar-item-active]="router.url === '/programa'" (click)="irA('/programa')">
+    <span class="navbar-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.1em" height="1.1em"><path fill="none" stroke="currentColor" d="M7.5 6V1m10 5V1m4 16v4.5h-18v-3m17.863-10H3.352M.5 18.25v.25h17.9l.15-.25l.234-.491A28 28 0 0 0 21.5 5.729V3.5h-18v2.128A28 28 0 0 1 .743 17.744z"/></svg></span>
     <span class="navbar-label">Programa</span>
   </button>
 
-  <button class="navbar-item">
-    <span class="navbar-icon">✅</span>
+  <button class="navbar-item" [class.navbar-item-active]="router.url === '/pendientes'" (click)="irA('/pendientes')">
+    <span class="navbar-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.1em" height="1.1em"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="m2 8l2 2l4-4m4 2h10M2 16l2 2l4-4m4 2h10"/></svg></span>
     <span class="navbar-label">Pendientes</span>
   </button>
 
-  <button class="navbar-item">
-    <span class="navbar-icon">👀</span>
+  <button class="navbar-item" [class.navbar-item-active]="router.url === '/cotilleos'"(click)="irA('/cotilleos')">
+    <span class="navbar-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="1em" height="1em"><path fill="none" stroke="#d3d3d3" strokeLinecap="round" strokeLinejoin="round" d="m19.772 9.5l1.154 11.453a1.644 1.644 0 0 0 1.8 1.47l.491-.049m8.945-4.206a3.29 3.29 0 0 1-2.943 3.602h0a3.29 3.29 0 0 1-3.602-2.943l-.214-2.127a3.29 3.29 0 0 1 2.943-3.602h0a3.29 3.29 0 0 1 3.601 2.943m.545 5.399l-.874-8.671m-21.071 5.428a3.29 3.29 0 0 1 2.942-3.602h0a3.29 3.29 0 0 1 3.602 2.943l.214 2.127a3.29 3.29 0 0 1-2.942 3.602h0a3.29 3.29 0 0 1-3.602-2.943m.33 3.272L9.772 10.508m15.737 13.896l1.154 11.452a1.644 1.644 0 0 0 1.8 1.472l.491-.05m8.945-4.207a3.29 3.29 0 0 1-2.943 3.602h0a3.29 3.29 0 0 1-3.602-2.942l-.214-2.127a3.29 3.29 0 0 1 2.942-3.602h0a3.29 3.29 0 0 1 3.602 2.942m.544 5.399l-.874-8.671M16.283 33.1a3.29 3.29 0 0 1 2.943-3.601h0a3.29 3.29 0 0 1 3.602 2.942l.214 2.127A3.29 3.29 0 0 1 20.1 38.17h0a3.29 3.29 0 0 1-3.602-2.942m.329 3.272l-1.319-13.089"/><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" d="M38.5 5.5h-29a4 4 0 0 0-4 4v29a4 4 0 0 0 4 4h29a4 4 0 0 0 4-4v-29a4 4 0 0 0-4-4"/></svg></span>
     <span class="navbar-label">Cotilleos</span>
   </button>
 </nav>
