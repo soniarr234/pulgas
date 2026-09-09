@@ -18,14 +18,16 @@
 
   border-radius: 20px;
 
-  background: rgba(217, 119, 6, 0.15);
+  background: rgba(18, 207, 228, 0.15);
 
-  color: var(--color-orange);
+  color: var(--color-blue);
 
   font-size: 12px;
   font-weight: 700;
 
   letter-spacing: 1px;
+
+  border: 1px solid rgba(18, 207, 228, 0.2);
 }
 
 .programa-title {
@@ -36,7 +38,7 @@
 }
 
 .programa-month {
-  color: var(--color-orange);
+  color: var(--color-blue);
 
   font-size: 14px;
 
@@ -102,7 +104,7 @@
 
   color: white;
 
-  border: 1px solid rgba(217, 119, 6, 0.5);
+  border: 1px solid rgba(18, 207, 228, 0.35);
 
   cursor: pointer;
 }
@@ -110,7 +112,10 @@
 .programa-day.active:hover {
   background: #252525;
 
-  border-color: var(--color-orange);
+  border-color: var(--color-blue);
+
+  box-shadow:
+    0 0 12px rgba(18, 207, 228, 0.2);
 }
 
 /* MODAL */
@@ -142,7 +147,10 @@
 
   background: #101010;
 
-  border: 1px solid #2b2b2b;
+  border: 1px solid rgba(18, 207, 228, 0.15);
+
+  box-shadow:
+    0 0 20px rgba(18, 207, 228, 0.08);
 
   animation: modalOpen 0.25s ease;
 }
@@ -197,6 +205,7 @@
 
   cursor: pointer;
 }
+
 .programa-separador {
   height: 1px;
 
@@ -220,6 +229,8 @@
   background: #181818;
 
   color: white;
+
+  border: 1px solid rgba(18, 207, 228, 0.08);
 }
 
 .programa-eventos-title {
@@ -249,7 +260,7 @@
 
   background: #181818;
 
-  border-left: 3px solid var(--color-orange);
+  border-left: 3px solid var(--color-blue);
 }
 
 .programa-evento-content {
@@ -257,13 +268,16 @@
 }
 
 .programa-evento-hora {
-  color: var(--color-orange);
+  color: var(--color-blue);
 
   font-size: 13px;
 
   font-weight: 700;
 
   margin-bottom: 4px;
+
+  text-shadow:
+    0 0 8px rgba(18, 207, 228, 0.3);
 }
 
 .programa-evento-nombre {
@@ -272,4 +286,14 @@
   font-size: 15px;
 
   font-weight: 600;
+}
+
+.programa-help {
+  margin-top: 20px;
+
+  color: #8a8a8a;
+
+  font-size: 13px;
+
+  line-height: 1.5;
 }

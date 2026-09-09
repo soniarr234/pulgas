@@ -1,124 +1,203 @@
-<!-- pages/cotilleos/cotilleos.html -->
-
 <div class="cotilleos-page">
 
-  <h1 class="cotilleos-title">
-    👀 Cotilleos
-  </h1>
-
-  <div
-    class="cotilleo-card"
-    *ngFor="let cotilleo of cotilleos">
-
-    <div class="cotilleo-header">
-
-      <div class="cotilleo-usuario">
-        🍻 {{ cotilleo.usuario }}
-      </div>
-
-      <div class="cotilleo-fecha">
-        {{ cotilleo.fecha | date:'dd/MM HH:mm' }}
-      </div>
-
-    </div>
-
-    <div class="cotilleo-texto">
-      {{ cotilleo.texto }}
-    </div>
-
-    <div class="cotilleo-reacciones">
-
-      <button
-        class="reaccion-btn"
-        (click)="reaccionar(cotilleo, 'corazon')">
-
-        ❤️ {{ contarReacciones(cotilleo, 'corazon') }}
-
-      </button>
-
-      <button
-        class="reaccion-btn"
-        (click)="reaccionar(cotilleo, 'risa')">
-
-        😂 {{ contarReacciones(cotilleo, 'risa') }}
-
-      </button>
-
-      <button
-        class="reaccion-btn"
-        (click)="reaccionar(cotilleo, 'fuego')">
-
-        🔥 {{ contarReacciones(cotilleo, 'fuego') }}
-
-      </button>
-
-      <button
-        class="reaccion-btn"
-        (click)="abrirComentarios(cotilleo)">
-
-        💬 {{ contarComentarios(cotilleo) }}
-
-      </button>
-
-    </div>
-
+  <!-- Cabecera fija -->
+  <div class="header-content">
+    <!-- La imagen ahora es independiente y está al principio del contenedor -->
+    <img 
+      src="https://res.cloudinary.com/dkicsjbbb/image/upload/v1788937887/1000078988_fntjhc.png" 
+      alt="Plankton Cotilleos" 
+      class="title-avatar"
+    />
+    
+    <h1 class="cotilleos-title">Cotilleos</h1>
   </div>
 
+  <!-- Formulario de publicación optimizado -->
+  <div class="cotilleos-form">
+    <div class="form-body">
+      <textarea
+        [(ngModel)]="nuevoCotilleo"
+        maxlength="280"
+        placeholder="¿Qué se cuece por el pueblo?">
+      </textarea>
+      
+      <div class="form-footer">
+        <!-- Contador de caracteres estilo X -->
+        <span class="char-counter" [class.counter-warn]="nuevoCotilleo.length > 250">
+          {{ 280 - nuevoCotilleo.length }}
+        </span>
+        <button
+          class="publicar-btn"
+          [disabled]="!nuevoCotilleo?.trim()"
+          (click)="publicar($event)"> <!-- SE AÑADE $EVENT AQUÍ -->
+          Publicar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feed de Cotilleos -->
+  <div class="timeline-feed">
+    <div class="cotilleo-card" *ngFor="let cotilleo of cotilleos">
+      
+      <!-- PARTE SUPERIOR: Contenido e información -->
+      <div class="cotilleo-top-section">
+        <div class="cotilleo-avatar">🍻</div>
+        <div class="cotilleo-content-wrapper">
+          <div class="cotilleo-header-container">
+            <!-- LADO IZQUIERDO: Datos del Usuario -->
+            <div class="cotilleo-header">
+              <span class="cotilleo-usuario">{{ cotilleo.usuario }}</span>
+            </div>
+            
+            <!-- LADO DERECHO: Fecha unida al Menú Desplegable -->
+            <div class="cotilleo-right-meta">
+              <span class="cotilleo-fecha">{{ cotilleo.fecha | date:'dd/MM HH:mm' }}</span>
+              
+              <div class="cotilleo-menu-container" *ngIf="!cotilleo.editando">
+                <button class="menu-dots-btn" (click)="toggleMenu($event, cotilleo)">
+                  <svg xmlns="http://w3.org" viewBox="0 0 24 24" width="1.2em" height="1.2em">
+                    <path fill="currentColor" fillRule="evenodd" d="M10.5 5A1.5 1.5 0 0 1 12 3.5h.01a1.5 1.5 0 0 1 1.5 1.5v.01a1.5 1.5 0 0 1-1.5 1.5H12a1.5 1.5 0 0 1-1.5-1.5zm0 7a1.5 1.5 0 0 1 1.5-1.5h.01a1.5 1.5 0 0 1 1.5 1.5v.01a1.5 1.5 0 0 1-1.5 1.5H12a1.5 1.5 0 0 1-1.5-1.5zm1.5 5.5a1.5 1.5 0 0 0-1.5 1.5v.01a1.5 1.5 0 0 0 1.5 1.5h.01a1.5 1.5 0 0 0 1.5-1.5V19a1.5 1.5 0 0 0-1.5-1.5z" clipRule="evenodd"/>
+                  </svg>
+                </button>
+                
+                <div class="dropdown-menu" *ngIf="cotilleo.mostrarMenu" (click)="$event.stopPropagation()">
+                  <button class="dropdown-item edit-item" (click)="activarEdicion(cotilleo)">✏️ Editar</button>
+                  <button class="dropdown-item delete-item" (click)="borrarCotilleo(cotilleo)">🗑️ Borrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+                  
+          <!-- CUERPO DEL POST: Alterna entre vista de texto normal y el bloque de edición integrado -->
+          <div class="cotilleo-body-area">
+            <ng-container *ngIf="!cotilleo.editando; else modoEdicion">
+              <div class="cotilleo-texto">
+                {{ cotilleo.texto }}
+              </div>
+            </ng-container>
+            
+            <ng-template #modoEdicion>
+              <div class="cotilleo-inline-edit" (click)="$event.stopPropagation()">
+                <textarea 
+                  [(ngModel)]="cotilleo.textoEditado" 
+                  maxlength="280"
+                  class="inline-edit-textarea">
+                </textarea>
+                <div class="inline-edit-actions">
+                  <span class="char-counter" [class.counter-warn]="(cotilleo.textoEditado?.length ?? 0) > 250">
+                    {{ 280 - (cotilleo.textoEditado?.length ?? 0) }}
+                  </span>
+                  <button class="cancelar-inline-btn" (click)="cotilleo.editando = false">
+                    Cancelar
+                  </button>
+                  <button 
+                    class="guardar-inline-btn" 
+                    [disabled]="!cotilleo.textoEditado?.trim()"
+                    (click)="guardarEdicionInline($event, cotilleo)"> <!-- SE AÑADE $EVENT AQUÍ -->
+                    Guardar
+                  </button>
+                </div>
+              </div>
+            </ng-template>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PARTE INFERIOR: Botones de extremo a extremo -->
+      <div class="cotilleo-actions-bar">
+        <button class="action-btn comment-btn" (click)="abrirComentarios(cotilleo)">
+          <div class="icon-wrapper">💬</div>
+          <span class="count">{{ contarComentarios(cotilleo) }}</span>
+        </button>
+
+        <button class="action-btn heart-btn" (click)="reaccionar($event, cotilleo, 'corazon')">
+          <div class="icon-wrapper">❤️</div>
+          <span class="count">{{ contarReacciones(cotilleo, 'corazon') }}</span>
+        </button>
+
+        <button class="action-btn laugh-btn" (click)="reaccionar($event, cotilleo, 'risa')">
+          <div class="icon-wrapper">😂</div>
+          <span class="count">{{ contarReacciones(cotilleo, 'risa') }}</span>
+        </button>
+
+        <button class="action-btn fire-btn" (click)="reaccionar($event, cotilleo, 'fuego')">
+          <div class="icon-wrapper">🔥</div>
+          <span class="count">{{ contarReacciones(cotilleo, 'fuego') }}</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+ 
 </div>
 
+<!-- Modal con Hilo Conector Visual -->
 @if (mostrarComentarios) {
-
-  <div
-    class="modal-backdrop"
-    (click)="cerrarComentarios()">
-
-    <div
-      class="modal"
-      (click)="$event.stopPropagation()">
-
-      <h3>
-        💬 Comentarios
-      </h3>
-
-      <div
-        class="comentario"
-        *ngFor="
-          let comentario of
-          cotilleoSeleccionado.cotilleo_comentarios
-        ">
-
-        <div class="comentario-usuario">
-          {{ comentario.usuario }}
-        </div>
-
-        <div class="comentario-texto">
-          {{ comentario.comentario }}
-        </div>
-
-        <div class="comentario-fecha">
-          {{ comentario.fecha | date:'dd/MM HH:mm' }}
-        </div>
-
+  <div class="modal-backdrop" (click)="cerrarComentarios()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      
+      <div class="modal-header">
+        <button class="close-modal-btn" (click)="cerrarComentarios()">✕</button>
+        <h3>Responder a {{ cotilleoSeleccionado.usuario }}</h3>
       </div>
 
-      <textarea
-        class="comentario-input"
-        [(ngModel)]="nuevoComentario"
-        placeholder="Escribe un comentario...">
-      </textarea>
+      <div class="modal-body">
+        <!-- Tweet Principal dentro del Modal -->
+        <div class="modal-main-tweet">
+          <div class="avatar-column">
+            <div class="cotilleo-avatar">🍻</div>
+            <div class="thread-line"></div> <!-- Línea conectora -->
+          </div>
+          <div class="cotilleo-main">
+            <div class="cotilleo-header">
+              <span class="cotilleo-usuario">{{ cotilleoSeleccionado.usuario }}</span>
+              <span class="cotilleo-handle">@{{ cotilleoSeleccionado.usuario | lowercase }}</span>
+            </div>
+            <div class="cotilleo-texto parent-text">{{ cotilleoSeleccionado.texto }}</div>
+          </div>
+        </div>
 
-      <button
-        class="comentario-btn"
-        (click)="publicarComentario()">
+        <!-- Lista de Respuestas -->
+        <div
+          class="comentario"
+          *ngFor="let comentario of cotilleoSeleccionado.cotilleo_comentarios">
+          <div class="avatar-column">
+            <div class="comentario-avatar">👤</div>
+          </div>
+          <div class="comentario-content">
+            <div class="comentario-meta">
+              <span class="comentario-usuario">{{ comentario.usuario }}</span>
+              <span class="comentario-handle">@{{ comentario.usuario | lowercase }}</span>
+            </div>
+            <div class="comentario-texto">{{ comentario.comentario }}</div>
+          </div>
+        </div>
+      </div>
 
-        Enviar comentario
-
-      </button>
-
+      <!-- Input de Respuesta Rápida dentro del Modal -->
+      <div class="modal-footer-form">
+        <div class="form-avatar-mini">👤</div>
+        <div class="reply-input-wrapper">
+          <textarea
+            class="comentario-input"
+            [(ngModel)]="nuevoComentario"
+            placeholder="Postea tu respuesta...">
+          </textarea>
+          <div class="reply-actions">
+            <button
+              class="comentario-btn"
+              [disabled]="!nuevoComentario || !nuevoComentario.trim()"
+              (click)="publicarComentario($event)"> <!-- SE AÑADE $EVENT AQUÍ -->
+              Respuesta
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-
 }
 
 <app-navbar></app-navbar>
